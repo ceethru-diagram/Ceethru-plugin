@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.hello.myideademo.WebView">
   <grid id="27dc6" binding="internalPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
     <constraints>
-      <xy x="-26" y="-16" width="877" height="782"/>
+      <xy x="-26" y="-16" width="877" height="163"/>
     </constraints>
     <properties>
       <preferredSize width="171" height="40"/>
