@@ -1,0 +1,7 @@
+<project>
+  <component name="ExternalProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/tictactoe.iml" filepath="$PROJECT_DIR$/tictactoe.iml" />
+    </modules>
+  </component>
+</project>

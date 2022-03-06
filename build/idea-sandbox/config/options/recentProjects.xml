@@ -1,0 +1,56 @@
+<application>
+  <component name="RecentProjectsManager">
+    <option name="additionalInfo">
+      <map>
+        <entry key="$USER_HOME$/code/ceethru/plugin">
+          <value>
+            <RecentProjectMetaInfo frameTitle="Ceethru" projectWorkspaceId="250ypN18WjaGjbHxHgYIgDXzozK">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="IC-213.6777.52" />
+              <option name="buildTimestamp" value="1643341648981" />
+              <frame x="196" y="45" width="1400" height="968" />
+              <option name="productionCode" value="IC" />
+              <option name="projectOpenTimestamp" value="1645118570072" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/cef">
+          <value>
+            <RecentProjectMetaInfo frameTitle="cef" projectWorkspaceId="25H2WmDz8kmsSwZkxkxSYQuPrgN">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="IC-213.6777.52" />
+              <option name="buildTimestamp" value="1643341669835" />
+              <frame x="0" y="25" width="1280" height="731" extendedState="6" />
+              <option name="productionCode" value="IC" />
+              <option name="projectOpenTimestamp" value="1645169725960" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Documents/demo">
+          <value>
+            <RecentProjectMetaInfo frameTitle="demo – TicTacToeGameState.java" projectWorkspaceId="22d3Mo4htpADC1vSyY2qw6EbCh4">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="IC-213.6777.52" />
+              <option name="buildTimestamp" value="1643341645943" />
+              <frame x="0" y="25" width="1280" height="731" extendedState="6" />
+              <option name="productionCode" value="IC" />
+              <option name="projectOpenTimestamp" value="1645172701946" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/Documents/demo/tictactoe-java-master">
+          <value>
+            <RecentProjectMetaInfo frameTitle="tictactoe-java-master – TicTacToeGameState.java" projectWorkspaceId="22XP5n1TsDpHuQayEmpUqsT84RN">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="IC-213.6777.52" />
+              <option name="buildTimestamp" value="1643341670619" />
+              <frame x="0" y="25" width="1280" height="731" extendedState="6" />
+              <option name="productionCode" value="IC" />
+              <option name="projectOpenTimestamp" value="1646282658481" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</application>

@@ -1,0 +1,27 @@
+<idea-plugin>
+    <id>org.example.Ceethru</id>
+    <name>Ceethru</name>
+    <vendor email="ceethru@gmail.com" url="http://www.ceethru.tech">Ceethru</vendor>
+
+    <description><![CDATA[demo for actions and messages and also do ur best]]></description>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+
+            <toolWindow id="Ceethru" secondary="true" icon="AllIcons.General.Modified" anchor="right"
+                        doNotActivateOnStart="true" factoryClass="com.hello.myideademo.WebViewToolFactory"/>
+
+    </extensions>
+
+    <actions>
+       <group id="MyIdDemo.HelloAction" text="MyIdeaDemo" description="about my idea">
+         <add-to-group group-id="ToolbarRunGroup" anchor="first"  />
+           <action class="com.hello.myideademo.HelloAction" id="MyIdeaDemo.Actions.HelloAction" text="Hello" icon="AllIcons.General.AddJdk" />
+       </group>
+
+    </actions>
+</idea-plugin>
