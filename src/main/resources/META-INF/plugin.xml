@@ -20,7 +20,11 @@
     <actions>
        <group id="MyIdDemo.HelloAction" text="MyIdeaDemo" description="about my idea">
          <add-to-group group-id="ToolbarRunGroup" anchor="first"  />
-           <action class="com.hello.myideademo.HelloAction" id="MyIdeaDemo.Actions.HelloAction" text="Hello" icon="AllIcons.General.AddJdk" />
+           <action class="com.hello.myideademo.HelloAction" id="MyIdeaDemo.Actions.HelloAction" text="Ceethru" icon="Ceethrusvg.Sdk_default_icon" />
+           <add-to-group group-id="ToolbarRunGroup" anchor="first"/>
+           <override-text place="MainMenu" text="Pop Dialog Action"/>
+           <keyboard-shortcut first-keystroke="control alt A" second-keystroke="C" keymap="$default"/>
+           <mouse-shortcut keystroke="control button3 doubleClick" keymap="$default"/>
        </group>
 
     </actions>
