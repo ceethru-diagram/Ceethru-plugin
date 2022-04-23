@@ -17,7 +17,7 @@
      <a href="http://www.ceethru.tech">For Detailed instructions visit</a>.
 
 ]]></description>
-    <change-notes>Initial release of the plugin.</change-notes>
+    <change-notes>Initial release of the plugin.Plugin generates interactive diagrams out of code </change-notes>
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
