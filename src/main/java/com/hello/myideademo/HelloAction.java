@@ -1,7 +1,6 @@
 package com.hello.myideademo;
 
-import com.hello.myideademo.dao.Datadao;
-import com.hello.myideademo.model.Data;
+
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
@@ -45,8 +44,7 @@ public class HelloAction extends AnAction {
     public static String ProjectPath;
     public static String fileName;
     public static String fileNamefirst;
-    @Autowired
-    Datadao repo;
+
     public static String getProjectPath() {
         return ProjectPath;
     }
