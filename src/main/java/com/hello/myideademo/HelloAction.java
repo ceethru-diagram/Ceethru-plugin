@@ -1,8 +1,12 @@
 package com.hello.myideademo;
 
+import com.hello.myideademo.dao.Datadao;
+import com.hello.myideademo.model.Data;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
+import com.intellij.openapi.application.ApplicationManager;
+import com.intellij.openapi.command.CommandProcessor;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.colors.EditorColors;
@@ -11,21 +15,38 @@ import com.intellij.openapi.fileEditor.FileDocumentManager;
 import com.intellij.openapi.fileEditor.FileEditorManager;
 import com.intellij.openapi.fileEditor.OpenFileDescriptor;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.util.text.StringUtil;
+import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowManager;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiManager;
 import com.intellij.ui.jcef.JBCefBrowser;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.*;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Paths;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
+import javax.persistence.Entity;
 import javax.swing.*;
-import java.io.File;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.concurrent.TimeUnit;
 
 public class HelloAction extends AnAction {
     public static String ProjectPath;
     public static String fileName;
     public static String fileNamefirst;
-
+    @Autowired
+    Datadao repo;
     public static String getProjectPath() {
         return ProjectPath;
     }
@@ -41,9 +62,9 @@ public class HelloAction extends AnAction {
         Document currentDoc = FileEditorManager.getInstance(e.getProject()).getSelectedTextEditor().getDocument();
         VirtualFile currentFile = FileDocumentManager.getInstance().getFile(currentDoc);
         fileName = currentFile.getName();
-        JPanel panel = new JPanel();
-        String url = "http://localhost:3000/?folderpath=" + ProjectPath + "&filename=" + fileName;
-        panel.add(new JBCefBrowser(url).getComponent());
+//        JPanel panel = new JPanel();
+//        String url = "http://localhost:3000/?folderpath=" + ProjectPath + "&filename=" + fileName;
+//        panel.add(new JBCefBrowser(url).getComponent());
         fileNamefirst = "";
         System.out.println(fileName);
         System.out.println(ProjectPath);
@@ -53,49 +74,26 @@ public class HelloAction extends AnAction {
             }
             fileNamefirst += fileName.charAt(i);
         }
-//        System.out.println(fileNamefirst);
-//        Diagram diagram=new Diagram();
-//        diagram.setCurrentFolderPath(ProjectPath);
-//        diagram.setCurrentFileName( fileName);
-//        diagram.setCurrentFile(fileNamefirst);
-//        System.out.println(diagram.CurrentFolderName);
-//        System.out.println(diagram.CurrentFileName);
-////         fileNamefirst=fileName.split(".")[0];
-////        Diagram blueprint=new Diagram(e.getProject().getBasePath(),currentFile.getName(),currentFile.getName());
-//        CombinedTypeSolver combinedTypeSolver = new CombinedTypeSolver();
-//        combinedTypeSolver.add(new ReflectionTypeSolver());
-//        combinedTypeSolver.add(new JavaParserTypeSolver(e.getProject().getBasePath()+"/src/main/java/"));
-//
-//        JavaSymbolSolver symbolSolver = new JavaSymbolSolver(combinedTypeSolver);
-//        StaticJavaParser.getConfiguration().setSymbolResolver(symbolSolver);
-//        String src = "package any; public class A implements B { private Object stack; public void clear() { stack.hashCode(); } }";
-//
-//        CompilationUnit cu=null;
-//        try{
-//            cu = StaticJavaParser.parse(new File(currentFile.getPath()));
-//        }
-//        catch (FileNotFoundException notfoun){
-//              System.out.println("File Not Found");
-//        }
-////        catch (FileNotFoundException notfoun){
-////
-////        }
-//        ClassOrInterfaceDeclaration c=cu.findAll(ClassOrInterfaceDeclaration.class).get(0);
-//        System.out.println();
-//        List<MethodDeclaration> m=c.getMethods();
-//        List<String>methods=new ArrayList<String>(0);
-//        for(MethodDeclaration md:m){
-//            methods.add(md.getNameAsString());
-//        }
-//        Messages.showInfoMessage(fileNamefirst,"info");
 
-//        Messages.showDialog(e.getProject().getProjectFilePath(),);
         Project project = e.getRequiredData(CommonDataKeys.PROJECT);
 
-        VirtualFile file = VfsUtil.findFileByIoFile(new File("/Users/saketh123/Documents/demo/tictactoe-java-master/src/main/java/ttsu/game/tictactoe/TicTacToeGameState.java"), true);
-        if (file != null) {
-            new OpenFileDescriptor(project, file, 0).navigate(true);
-        }
+//        Project project = anActionEvent.getProject();
+//        File file = new File("/Users/saketh123/Documents/demo/tictactoe-java-master/src/main/java/ttsu/game/tictactoe/TicTacToeGameState.java");
+//        VirtualFile virtualFile = LocalFileSystem.getInstance().findFileByIoFile(file);
+//        PsiFile psiFile = PsiManager.getInstance(project).findFile(virtualFile);
+//        OpenFileDescriptor openFileDescriptor = new OpenFileDescriptor(project, virtualFile);
+//        openFileDescriptor.navigate(true);
+//
+//        Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
+//        int x =  editor.getDocument().getLineCount();
+//        editor.getMarkupModel().addLineHighlighter(120, 20, null);//addRangeHighlighter(1, 20, (HighlighterLayer.SELECTION - 100), new TextAttributes(), HighlighterTargetArea.EXACT_RANGE);
+
+//        Project project = e.getRequiredData(CommonDataKeys.PROJECT);
+
+//        VirtualFile file = VfsUtil.findFileByIoFile(new File("/Users/saketh123/Documents/demo/tictactoe-java-master/src/main/java/ttsu/game/tictactoe/TicTacToeGameState.java"), true);
+//        if(file != null) {
+//            new OpenFileDescriptor(project, file, 0).navigate(true);
+//        }
 //        if (file == null) return; // file not found
 //        if (file.getFileType().isBinary()) return; // file is binary
 //
@@ -118,42 +116,115 @@ public class HelloAction extends AnAction {
 //                });
 //            }
 //        }, "Update android manifest", null);
-        Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
-        int x = editor.getDocument().getLineCount();
-        TextAttributes color = editor.getColorsScheme().getAttributes(EditorColors.BREADCRUMBS_HOVERED);
-        editor.getMarkupModel().addLineHighlighter(122, 0, color);
-//      editor.getMarkupModel().addLineHighlighter(123,20,)
+//        Editor editor = FileEditorManager.getInstance(project).getSelectedTextEditor();
+//        int x =  editor.getDocument().getLineCount();
+//        TextAttributes color = editor.getColorsScheme().getAttributes(EditorColors.BREADCRUMBS_HOVERED);
+//        editor.getMarkupModel().addLineHighlighter(127, 0, color);
+//      editor.getMarkupModel().addLineHighlighter(123);
 
 
 //        editor.getCaretModel().addCaret(v);
-//        ReadAction
-//                .nonBlocking(() -> {
-//
-//                    VirtualFile virtualFile = file;
-//
-//                    final int offset = 3469;
-//
-//                    return new Pair<>(virtualFile, offset);
-//
-//                })
-//                .finishOnUiThread(ModalityState.defaultModalityState(), p -> {
-//                    if (p != null)
-//                    {
-//                        System.out.println(p.second);
-//                        openInEditor(p.first, p.second);
-//                        getFileEditorManager().openTextEditor(new OpenFileDescriptor(project,
-//                                virtualFile, offset), true);
-//                    }
-//                })
-//                .inSmartMode(project)
-//                .submit(NonUrgentExecutor.getInstance());
-//        FileEditorManager.getInstance(project).openTextEditor(new OpenFileDescriptor(project,file,123),true)
-        FileEditorManager.getInstance(project).openTextEditor(new OpenFileDescriptor(project,
-                file, 3469), true);
+////        ReadAction
+////                .nonBlocking(() -> {
+////
+////                    VirtualFile virtualFile = file;
+////
+////                    final int offset = 3469;
+////
+////                    return new Pair<>(virtualFile, offset);
+////
+////                })
+////                .finishOnUiThread(ModalityState.defaultModalityState(), p -> {
+////                    if (p != null)
+////                    {
+////                        System.out.println(p.second);
+////                        openInEditor(p.first, p.second);
+////                        getFileEditorManager().openTextEditor(new OpenFileDescriptor(project,
+////                                virtualFile, offset), true);
+////                    }
+////                })
+////                .inSmartMode(project)
+////                .submit(NonUrgentExecutor.getInstance());
+//        FileEditorManager.getInstance(project).openTextEditor(new OpenFileDescriptor(project,file,127),true);
+//        FileEditorManager.getInstance(project).openTextEditor(new OpenFileDescriptor(project,
+//                file, 3469), true);
 //        addRangeHighlighter(1, 20, (HighlighterLayer.SELECTION - 100), new TextAttributes(), HighlighterTargetArea.EXACT_RANGE);
         open(e);
+
+       try{
+//           exexcute(ProjectPath,project);
+       }
+       catch (Exception ex){
+           System.out.println(ex);
+       }
+
+
     }
 
+
+    public static void wait(int ms)
+    {
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
+    }
+    public void exexcute(String projectpath,Project project) throws Exception, IOException{
+        while(true){
+            wait(2000);
+            BufferedReader br=null;
+               try{
+                   br = new BufferedReader(new FileReader(projectpath+"/file.txt"));
+
+               }
+               catch (Exception ex){
+
+               }
+
+
+            if(br==null) continue;
+            try {
+
+                StringBuilder sb = new StringBuilder();
+                String line = br.readLine();
+
+                while (line != null) {
+                    sb.append(line);
+                    sb.append(System.lineSeparator());
+                    line = br.readLine();
+                }
+                String everything = sb.toString();
+                VirtualFile file = VfsUtil.findFileByIoFile(new File("/Users/saketh123/Documents/demo/tictactoe-java-master/src/main/java/ttsu/game/tictactoe/TicTacToeGameState.java"), true);
+//        if (file != null) {
+            new OpenFileDescriptor(project, file, 3469).navigate(true);
+//        }
+        if (file == null) return; // file not found
+                System.out.println(everything);
+                try {
+                    Files.deleteIfExists(
+                            Paths.get(projectpath+"/file.txt"));
+                }
+                catch (NoSuchFileException e) {
+                    System.out.println(
+                            "No such file/directory exists");
+                }
+                catch (DirectoryNotEmptyException e) {
+                    System.out.println("Directory is not empty.");
+                }
+                catch (IOException e) {
+                    System.out.println("Invalid permissions.");
+                }
+
+                System.out.println("Deletion successful.");
+            } finally {
+                br.close();
+            }
+        }
+    }
 
     public void open(AnActionEvent e) {
         ToolWindow toolWindow = ToolWindowManager.getInstance(e.getProject()).getToolWindow(WebViewToolFactory.ID);
